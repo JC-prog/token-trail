@@ -4,7 +4,6 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"os"
 	"path/filepath"
 	"time"
 
@@ -16,7 +15,6 @@ import (
 	"github.com/jcprog/token-trail/internal/models"
 	"github.com/jcprog/token-trail/internal/pricing"
 	"github.com/jcprog/token-trail/internal/provider"
-	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
 // App struct
@@ -42,24 +40,26 @@ func NewApp() *App {
 
 // startup is called when the app starts. The context is saved
 // so we can call the runtime methods
-func (a *App) startup(ctx context.Context) error {
+func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
 
 	// Get or create database
 	dbPath, err := database.GetDBPath()
 	if err != nil {
-		return fmt.Errorf("failed to get db path: %w", err)
+		fmt.Printf("failed to get db path: %v\n", err)
+		return
 	}
 
 	db, err := database.OpenDB(dbPath)
 	if err != nil {
-		return fmt.Errorf("failed to open database: %w", err)
+		fmt.Printf("failed to open database: %v\n", err)
+		return
 	}
 	a.db = db
 
 	// Load bundled pricing
 	if err := pricing.LoadBundledPricing(db); err != nil {
-		return fmt.Errorf("failed to load pricing: %w", err)
+		fmt.Printf("failed to load pricing: %v\n", err)
 	}
 
 	// Initialize components
@@ -74,7 +74,8 @@ func (a *App) startup(ctx context.Context) error {
 	a.dataDir = dataDir
 	ks, err := keystore.NewKeystore(dataDir)
 	if err != nil {
-		return fmt.Errorf("failed to create keystore: %w", err)
+		fmt.Printf("failed to create keystore: %v\n", err)
+		return
 	}
 	a.keystore = ks
 
@@ -101,18 +102,15 @@ func (a *App) startup(ctx context.Context) error {
 		}
 		a.watcher.Start(ctx, logWatchPath)
 	}
-
-	return nil
 }
 
 // shutdown is called when the app is shutting down
-func (a *App) shutdown(ctx context.Context) error {
+func (a *App) shutdown(ctx context.Context) {
 	a.poller.Stop()
 	a.watcher.Stop()
 	if a.db != nil {
 		a.db.Close()
 	}
-	return nil
 }
 
 // ============================================
@@ -159,11 +157,6 @@ func (a *App) GetUsageEvents(filter *models.EventFilter) (*models.PaginatedEvent
 
 // ExportUsageEvents exports usage events to CSV
 func (a *App) ExportUsageEvents(filter *models.EventFilter, format string) (string, error) {
-	events, err := a.db.GetUsageEvents(filter)
-	if err != nil {
-		return "", err
-	}
-
 	// For MVP, just return success message
 	filename := filepath.Join(a.dataDir, fmt.Sprintf("export-%d.csv", time.Now().Unix()))
 	return filename, nil

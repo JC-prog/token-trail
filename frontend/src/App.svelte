@@ -7,7 +7,8 @@
   import Settings from './pages/Settings.svelte'
   import { loadProviders } from './lib/stores/providers'
   import { loadSettings } from './lib/stores/settings'
-  import { refreshDashboard, onSyncCompleted, onBudgetAlert } from './lib/wailsbridge'
+  import { refreshDashboard } from './lib/stores/dashboard'
+  import { onSyncCompleted, onBudgetAlert } from './lib/wailsbridge'
 
   let currentPage = '/'
   let theme = 'system'

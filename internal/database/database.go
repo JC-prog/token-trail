@@ -100,12 +100,6 @@ func (db *DB) BeginTx() (*sql.Tx, error) {
 	return db.conn.Begin()
 }
 
-// InsertUsageEvent inserts a usage event
-func (db *DB) InsertUsageEvent(event interface{}) (string, error) {
-	// This is a placeholder; actual impl in queries.go
-	return "", nil
-}
-
 // GetDBPath returns the appropriate database file path for the current OS
 func GetDBPath() (string, error) {
 	userConfigDir, err := os.UserConfigDir()

@@ -6,7 +6,6 @@ import (
 	"os"
 	"path/filepath"
 	"sync"
-	"time"
 
 	"github.com/fsnotify/fsnotify"
 	"github.com/jcprog/token-trail/internal/database"

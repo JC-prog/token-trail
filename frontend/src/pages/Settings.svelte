@@ -166,8 +166,9 @@
         <h2>General Settings</h2>
 
         <div class="form-group">
-          <label>Polling Interval (hours)</label>
+          <label for="poll-interval">Polling Interval (hours)</label>
           <input
+            id="poll-interval"
             type="number"
             min="1"
             max="168"
@@ -177,8 +178,8 @@
         </div>
 
         <div class="form-group">
-          <label>Theme</label>
-          <select bind:value={$settings.theme}>
+          <label for="theme-select">Theme</label>
+          <select id="theme-select" bind:value={$settings.theme}>
             <option value="system">System</option>
             <option value="light">Light</option>
             <option value="dark">Dark</option>
@@ -195,8 +196,9 @@
 
         {#if $settings.log_watch_enabled}
           <div class="form-group">
-            <label>Log Watch Path</label>
+            <label for="log-watch-path">Log Watch Path</label>
             <input
+              id="log-watch-path"
               type="text"
               bind:value={$settings.log_watch_path}
               placeholder="Leave blank for default (~/.claude/)"

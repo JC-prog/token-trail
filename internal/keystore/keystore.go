@@ -4,6 +4,7 @@ import (
 	"crypto/aes"
 	"crypto/cipher"
 	"crypto/rand"
+	"crypto/sha256"
 	"encoding/base64"
 	"fmt"
 	"os"
@@ -11,7 +12,6 @@ import (
 
 	"github.com/denisbrodbeck/machineid"
 	"golang.org/x/crypto/pbkdf2"
-	"golang.org/x/crypto/sha256"
 )
 
 type Keystore struct {

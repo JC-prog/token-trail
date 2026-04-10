@@ -82,16 +82,17 @@
       <h2>Create New Project</h2>
       <div style="display: grid; gap: 1rem;">
         <div>
-          <label>Project Name</label>
+          <label for="project-name">Project Name</label>
           <input
+            id="project-name"
             type="text"
             placeholder="e.g., Productivity Platform"
             bind:value={newProject.name}
           />
         </div>
         <div>
-          <label>Color</label>
-          <input type="color" bind:value={newProject.color} />
+          <label for="project-color">Color</label>
+          <input id="project-color" type="color" bind:value={newProject.color} />
         </div>
         <button on:click={handleCreate} disabled={loading}>
           {loading ? 'Creating...' : 'Create Project'}
