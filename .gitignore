@@ -1,0 +1,63 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool
+*.out
+
+# Dependency directories
+vendor/
+
+# Go workspace file
+go.work
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.svelte-kit/
+
+# Build artifacts
+build/
+dist/
+*.app/
+
+# Wails
+frontend/wailsjs/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# macOS
+.DS_Store
+*.app
+
+# Database files
+*.db
+*.db-wal
+*.db-shm
+tokentrail.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+temp/

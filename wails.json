@@ -1,0 +1,27 @@
+{
+  "$schema": "https://wails.io/schemas/config.v2.json",
+  "name": "TokenTrail",
+  "outputfilename": "TokenTrail",
+  "frontend:dir": "frontend",
+  "frontend:install": "npm install",
+  "frontend:build": "npm run build",
+  "frontend:dev:watcher": "npm run dev",
+  "frontend:dev:autoDiscovery": true,
+  "author": {
+    "name": "JCProg",
+    "email": "contact@example.com"
+  },
+  "info": {
+    "productName": "TokenTrail",
+    "productVersion": "0.1.0",
+    "copyright": "Copyright © 2026",
+    "comments": "Track LLM token usage and costs locally"
+  },
+  "nsisType": "multiple",
+  "obfuscated": false,
+  "platforms": [
+    "windows",
+    "linux",
+    "darwin"
+  ]
+}
